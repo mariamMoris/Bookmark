@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark</title>
+    <link rel="stylesheet" href="CSS/all.min.css">
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,700;1,800;1,900&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <h1 class="text-center my-5 display-4  mx-auto">Bookmarker</h1>
+    <div class="container ">
+        <div class="bookmark-content">
+            <div class="d-flex justify-content-center align-items-center my-3 p-3 ">
+                <h3>
+                    <i class="fa-solid fa-bookmark fs-2 mb-2 mx-1"></i>
+                    Bookmark your favorite sites
+                    <i class="fa-solid fa-bookmark fs-2 mb-2 mx-1"></i>
+                </h3>
+            </div>
+            <div>
+                <label for="siteName" class="fw-bold my-2 fs-6 p-1"><i class="fa-solid fa-book-bookmark mx-1"></i>Site
+                    Name</label>
+                <input type="text" id="siteName" class="w-100 p-2 rounded-3" placeholder="Bookmark Name">
+                <label for="siteUrl" class="fw-bold mt-4 mb-2 fs-6 p-1"><i class="fa-solid fa-link mx-1"></i>Site
+                    URL</label>
+                <input type="text" id="siteUrl" class="w-100 p-2 rounded-3" placeholder="Website URL">
+
+                <input type="submit" onclick="submitSite()"
+                    class="btnSub btn text-white d-block m-auto my-4 px-5 py-2 ">
+            </div>
+        </div>
+        <table class="table text-center px-5 bg-white mt-4">
+            <thead class="px-3">
+                <th>Index</th>
+                <th>Website Name</th>
+                <th>Visit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/index.js"></script>
+</body>
+
+</html>
