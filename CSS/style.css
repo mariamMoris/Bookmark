@@ -37,7 +37,7 @@ h1:hover::before {
     font-family: var(--third-font) ;
     border-bottom: 2px dotted ;
 }
-h3 {
+h4 {
     background-image: linear-gradient(to right, rgb(64, 165, 91), rgb(178, 172, 73));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;

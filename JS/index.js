@@ -34,11 +34,11 @@ function displaySites() {
         <td>${i}</td>
         <td>${sites[i].name}</td>
         <td>
-            <a href=${sites[i].url} target="_blank" class="btnVisit btn text-white py-2 px-3">
+            <a href=${sites[i].url} target="_blank" class="btnVisit btn text-white py-2 px-lg-3">
                 <i class="fa-solid fa-eye mx-1 "></i>Visit</a>
         </td>
         <td>
-            <button onclick=deleteSite(${i}) class="btnDelete btn text-white py-2 px-3"><i class="fa-solid fa-trash"></i>
+            <button onclick=deleteSite(${i}) class="btnDelete btn text-white py-2 px-lg-3"><i class="fa-solid fa-trash"></i>
                 Delete</button>
         </td>
     </tr>     `
