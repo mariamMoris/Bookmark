@@ -2,35 +2,33 @@ var siteName = document.getElementById("siteName");
 var siteUrl = document.getElementById("siteUrl");
 
 var sites = [];
-if(localStorage.getItem("sites")!=null ){
-    sites = JSON.parse(localStorage.getItem("sites"));
-    displaySites()
+if (localStorage.getItem("sites") != null) {
+  sites = JSON.parse(localStorage.getItem("sites"));
+  displaySites()
 }
 function submitSite() {
-   if( valdiateSiteName(siteName.value) && valdiateSiteUrl(siteUrl.value)){
+  if (valdiateSiteName() && valdiateSiteUrl()) {
     var site = {
-        name: siteName.value,
-        url: siteUrl.value
+      name: siteName.value,
+      url: siteUrl.value
     };
     sites.push(site);
     localStorage.setItem("sites", JSON.stringify(sites))
     displaySites()
     clearForm()
-   }
-   else{
-    siteName.style.border="2px solid red";
-    siteUrl.style.border="2px solid red";
+  }
+  else {
     Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Site Name or Url is not valid !",
-      }); 
-   }   
+      icon: "error",
+      title: "Oops...",
+      text: "Site Name or Url is not valid !",
+    });
+  }
 }
 function displaySites() {
-    var trs = "";
-    for (var i = 0;i<sites.length; i++) {
-        trs +=`<tr>
+  var trs = "";
+  for (var i = 0; i < sites.length; i++) {
+    trs += `<tr>
         <td>${i}</td>
         <td>${sites[i].name}</td>
         <td>
@@ -42,56 +40,79 @@ function displaySites() {
                 Delete</button>
         </td>
     </tr>     `
-    }
-    document.getElementById("tbody").innerHTML = trs;
+  }
+  document.getElementById("tbody").innerHTML = trs;
 }
-function clearForm(){
-    siteName.value="";
-    siteUrl.value="";
+function clearForm() {
+  siteName.value = "";
+  siteUrl.value = "";
 }
-function deleteSite(index){
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-danger mx-2",
-          cancelButton: "btn btn-success mx-2"
-        },
-        buttonsStyling: false
-      });
+function deleteSite(index) {
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-danger mx-2",
+      cancelButton: "btn btn-success mx-2"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Are you sure?",
+    text: "You won't be able to delete this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      sites.splice(index, 1)
+      localStorage.setItem("sites", JSON.stringify(sites))
+      displaySites()
       swalWithBootstrapButtons.fire({
-        title: "Are you sure?",
-        text: "You won't be able to delete this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-            sites.splice(index,1)
-            localStorage.setItem("sites", JSON.stringify(sites))
-            displaySites()
-          swalWithBootstrapButtons.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire({
-            title: "Cancelled",
-            text: "Your imaginary file is safe :)",
-            icon: "error"
-          });
-        }
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
       });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelled",
+        text: "Your imaginary file is safe :)",
+        icon: "error"
+      });
+    }
+  });
 }
-function valdiateSiteName(name){
-    var pattern= /^[A-Z][a-z]{3,20}\d*$/;
-    return pattern.test(name)
+function valdiateSiteName() {
+  var pattern = /^[A-Z][a-z]{2,8}\d*$/;
+  var text = siteName.value;
+  var alertMassage = document.getElementById("massage");
+  if (pattern.test(text) == true) {
+    siteName.style.border = "2px solid green";
+    alertMassage.classList.add('d-none')
+    return true;
+  }
+  else {
+    siteName.style.border = "2px solid red";
+    alertMassage.classList.remove('d-none')
+    return false;
+  }
+
 }
-function valdiateSiteUrl(url){
-    var pattern=/^https?:\/\/w{3}\.[a-z]{4,20}\d*\.[a-z]{2,5}$/i;
-    return pattern.test(url);
+function valdiateSiteUrl() {
+  var pattern = /^https?:\/\/w{3}\.[a-z]{3,10}\d*\.[a-z]{2,5}$/i;
+  var url = siteUrl.value;
+  var alertMassage = document.getElementById("urlMassage");
+  if (pattern.test(url) == true) {
+    siteUrl.style.border = "2px solid green";
+    alertMassage.classList.add('d-none')
+    return true;
+  }
+  else {
+    siteUrl.style.border = "2px solid red";
+    alertMassage.classList.remove('d-none')
+    return false;
+  }
 }
