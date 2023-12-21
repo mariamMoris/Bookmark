@@ -86,7 +86,7 @@ function deleteSite(index) {
   });
 }
 function valdiateSiteName() {
-  var pattern = /^[A-Z][a-z]{2,8}\d*$/;
+  var pattern = /^[A-Z][a-z]{2,19}\d*$/;
   var text = siteName.value;
   var alertMassage = document.getElementById("massage");
   if (pattern.test(text) == true) {
@@ -102,7 +102,7 @@ function valdiateSiteName() {
 
 }
 function valdiateSiteUrl() {
-  var pattern = /^https?:\/\/w{3}\.[a-z]{3,10}\d*\.[a-z]{2,5}$/i;
+  var pattern = /^https?:\/\/w{3}\.[a-z]{3,}\d*\.[a-z]{2,5}$/i;
   var url = siteUrl.value;
   var alertMassage = document.getElementById("urlMassage");
   if (pattern.test(url) == true) {
