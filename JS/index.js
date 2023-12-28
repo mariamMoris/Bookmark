@@ -86,7 +86,7 @@ function deleteSite(index) {
   });
 }
 function valdiateSiteName() {
-  var pattern = /^[A-Z][a-z]{2,19}\d*$/;
+  var pattern = /^\S(\s|\S){1,19}\S$/;
   var text = siteName.value;
   var alertMassage = document.getElementById("massage");
   if (pattern.test(text) == true) {
